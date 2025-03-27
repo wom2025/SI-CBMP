@@ -149,7 +149,7 @@ def update_graphs(date_str, line1, line2):
 @app.callback(
     Output("download-si-ace-image", "data"),
     Input("download-si-ace", "n_clicks"),
-    state("si-ace-graph", "figure"),
+    State("si-ace-graph", "figure"),
     prevent_initial_call=True
 )
 def download_si_figure(n, fig):
@@ -159,7 +159,7 @@ def download_si_figure(n, fig):
 @app.callback(
     Output("download-cbmp-image", "data"),
     Input("download-cbmp", "n_clicks"),
-    state("cbmp-graph", "figure"),
+    State("cbmp-graph", "figure"),
     prevent_initial_call=True
 )
 def download_cbmp_figure(n, fig):
