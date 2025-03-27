@@ -165,9 +165,6 @@ def download_si_figure(n, fig):
 def download_cbmp_figure(n, fig):
     fig_obj = go.Figure(fig)
     return dcc.send_bytes(lambda x: pio.write_image(fig_obj, x, format='png'), filename="CBMP_Pricing.png")
-
-if __name__ == '__main__':
-    app.run(debug=False, port=8058)
 import os
 
 if __name__ == '__main__':
