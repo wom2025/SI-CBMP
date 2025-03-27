@@ -127,7 +127,7 @@ def update_graphs(date_str, line1, line2):
     fig1.add_trace(go.Scatter(x=df1['Datetime'], y=df1['ACE'], mode='lines', name='ACE (MW)', line=dict(color='orange')))
     fig1.update_layout(title='System Imbalance (SI) & ACE', hovermode='x unified',
                        xaxis=dict(showgrid=True, dtick=900000, matches='x'),
-                       yaxis=dict(showgrid=True), height=500)
+                       yaxis=dict(showgrid=True), height=600)
 
     fig2 = go.Figure()
     fig2.add_trace(go.Scatter(x=df1['Datetime'], y=df1['MIP'], mode='lines', name='MIP'))
@@ -142,14 +142,14 @@ def update_graphs(date_str, line1, line2):
             fig2.add_hline(y=line2, line_color='lightblue', line_dash='dot')
     fig2.update_layout(title='CBMP / MIP / MDP / Imbalance', hovermode='x unified',
                        xaxis=dict(showgrid=True, dtick=900000, matches='x'),
-                       yaxis=dict(showgrid=True), height=700)
+                       yaxis=dict(showgrid=True), height=600)
 
     return fig1, fig2
 
 @app.callback(
     Output("download-si-ace-image", "data"),
     Input("download-si-ace", "n_clicks"),
-    Input("si-ace-graph", "figure"),
+    state("si-ace-graph", "figure"),
     prevent_initial_call=True
 )
 def download_si_figure(n, fig):
@@ -159,7 +159,7 @@ def download_si_figure(n, fig):
 @app.callback(
     Output("download-cbmp-image", "data"),
     Input("download-cbmp", "n_clicks"),
-    Input("cbmp-graph", "figure"),
+    state("cbmp-graph", "figure"),
     prevent_initial_call=True
 )
 def download_cbmp_figure(n, fig):
